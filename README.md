@@ -22,3 +22,19 @@ Steps:
 * Modify the configuration file (config.json) according to your needs.
 
 * Run pg2mongo_migration.py using command: python pg2mongo_migration.py
+
+
+When to migrate from postgres to mongodb:
+----------------------------------------
+
+* If you are still in the initial stages of a project and something tells you that the tables you created need not have relationships.
+* The external sources you use to populate your tables in postgres changes (There is no consistency in the data that you get.)
+* You are unfamiliar with postgres (:D).
+* You are working in a company where your Project Manager lets you play with different databases to check its analytical capabilities, scaling, availability and other stuffs.
+* And many more.
+
+Finally :
+---------
+
+* Unless and untill you are absolutely sure that you know what you are doing, only then you need to migrate from postgres to mongodb.
+* My piece of advice: Dont migrate from postgres to mongodb **********************
