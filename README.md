@@ -36,5 +36,5 @@ When to migrate from postgres to mongodb:
 Finally :
 ---------
 
-* Unless and untill you are absolutely sure that you know what you are doing, only then you need to migrate from postgres to mongodb.
+* Unless and until you are absolutely sure that you know what you are doing, only then you need to migrate from postgres to mongodb.
 * My piece of advice: Dont migrate from postgres to mongodb **********************

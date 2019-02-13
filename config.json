@@ -2,10 +2,10 @@
   
   "postgres": {
     "user": "postgres",
-    "password": "xxxxx",
+    "password": "kucchiboy",
     "host": "localhost",
     "port": 5432,
-    "databaseName": "xxxx",
+    "databaseName": "rosetta",
     "schemaName": "public"
   },
   "mongo": {

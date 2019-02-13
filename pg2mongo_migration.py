@@ -9,12 +9,14 @@ import traceback
 import postgres_dao
 import mongodb_helper
 import mongo_metadata_dao
+import time
 
 __author__ = 'ranjan'
 
 
 '''
-* This script first migrates or moves all the tables and rows of posgtres as is to 
+* Constraints (PK, FK and unique) are added to metadata collection.
+* This script first migrates or moves all the tables and rows of postgres as is to
 mongodb.
 * Next, the relationships between each tables are mapped in mongodb using the DBRefs.
 
@@ -76,18 +78,34 @@ def main(argv):
 
         print 'Adding constraints information of postgres into mongodb metadata collection.'
 
+        start = time.time()
+
         # Insert the relationships or constraints of all the table in metadata collection
         mongo_metadata_dao.add_pg_table_constraints(db, pg_conn)
+
+        end = time.time()
+
+        print 'Time taken to add constraint to metadata: ', (end - start)
+
+        start = time.time()
 
         # Initial migration (Migrate data from postgres to mongodb as is.)
         pg2mongo_initial_migration.migrate(config, pg_conn, db)
 
-        print 'Finished initial pg2mongodb migration. Now finalizing constraints links.'
+        end = time.time()
+
+        print 'Added all tables and its rows as is to mongodb. It took: ', (end - start)
+
+        start = time.time()
 
         # Now that all the tables and rows are added into mongodb, link the
         # individual collections in mongodb using DBRefs. i.e : Link the foreign keys as well
         # as the unique key constraints in postgres into mongodb using metadata collection
         populate_constraints.populate(mongo_client, config)
+
+        end = time.time()
+
+        print 'Added constraints to all collections. It took: ', (end - start)
 
     except Exception as e:
 

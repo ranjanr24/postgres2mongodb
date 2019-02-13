@@ -164,4 +164,3 @@ def get_table_rows_count(pg_conn, table_name):
 
 
 
-
